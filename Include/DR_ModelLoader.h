@@ -30,11 +30,6 @@ public:
 
 private:
     const char* fileName_;
-    GLuint Texture_;
-    GLenum textureTarget_;
-
-    GLuint texBufferID;
-    GLuint texCoordID, texID;
 
 
 
