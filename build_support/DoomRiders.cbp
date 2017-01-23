@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="DoomRiders" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/p13d93/test/MachP/cmakemanual/build_support" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="DoomRiders">
+         <Option output="/home/p13d93/test/MachP/cmakemanual/build_support/DoomRiders" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/p13d93/test/MachP/cmakemanual/build_support" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/p13d93/test/MachP/cmakemanual/build_support/." />
+            <Add directory="/home/p13d93/test/MachP/cmakemanual/build_support/../Include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 DoomRiders" />
+            <CompileFile command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="DoomRiders/fast">
+         <Option output="/home/p13d93/test/MachP/cmakemanual/build_support/DoomRiders" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/p13d93/test/MachP/cmakemanual/build_support" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/p13d93/test/MachP/cmakemanual/build_support/." />
+            <Add directory="/home/p13d93/test/MachP/cmakemanual/build_support/../Include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 DoomRiders/fast" />
+            <CompileFile command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/p13d93/test/MachP/cmakemanual/build_support" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/p13d93/test/MachP/cmakemanual/build_support" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/share/astenv/devtools/bin/bin.x86_64-unknown-linux_r5i12/gmake -f &quot;/home/p13d93/test/MachP/cmakemanual/build_support/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/p13d93/test/MachP/cmakemanual/Src/main.cpp">
+      </Unit>
+      <Unit filename="/home/p13d93/test/MachP/cmakemanual/Src/math_3d.cpp">
+      </Unit>
+      <Unit filename="/home/p13d93/test/MachP/cmakemanual/build_support/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
