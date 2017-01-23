@@ -3,7 +3,6 @@
 
 #include <GL/glew.h>
 #include "ogldev_math_3d.h"
-#include "ImageMagick-6/Magick++.h"
 
 typedef struct triangle
 {
@@ -22,7 +21,7 @@ typedef struct triangle
 class Texturing
 {
 public:
-    Texturing(GLenum TextureTarget, const std::string& FileName);
+    Texturing(const std::string& FileName);
 
     bool Load();
 
@@ -30,6 +29,7 @@ public:
 
 private:
     const char* fileName_;
+    GLuint Texture_;
 
 
 
