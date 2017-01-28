@@ -12,8 +12,6 @@ Texturing::Texturing(const std::string& FileName)
     int width, height;
     unsigned char* image = SOIL_load_image("../Content/bricks.jpg", &width, &height, 0, SOIL_LOAD_RGB);
 
-    std::cout<<image<<std::endl;
-
     glGenTextures(1, &Texture_);
     glBindTexture(GL_TEXTURE_2D, Texture_);
 
@@ -33,8 +31,10 @@ Texturing::Texturing(const std::string& FileName)
 
 void Texturing::Bind(GLenum TextureUnit)
 {
+    glActiveTexture(TextureUnit);
     glBindTexture(GL_TEXTURE_2D, Texture_);
 }
+
 
 
 Model::Model(const char* meshFilename)

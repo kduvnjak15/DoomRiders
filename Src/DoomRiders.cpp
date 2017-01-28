@@ -13,6 +13,8 @@
 #include "DR_Pipeline.h"
 #include "DR_Spectator.h"
 #include "DR_ModelLoader.h"
+#include "DR_Texture.h"
+#include "DR_Skybox.h"
 
 
 #define WINDOW_WIDTH 1024
@@ -82,9 +84,20 @@ public:
         CreateIndexBuffer();
 
         GameShader(pVSFileName, pFSFileName);
+        texturePtr = new Texturing("bricks.jpg");
         camera_ = new Spectator();
+        skyboxPtr = new SkyBox( camera_, gPersProjInfo);
 
-
+        if (!skyboxPtr->Init(".",
+             "../Content/sp3right.jpg",
+             "../Content/sp3left.jpg",
+             "../Content/sp3top.jpg",
+             "../Content/sp3bot.jpg",
+             "../Content/sp3front.jpg",
+             "../Content/sp3back.jpg"))
+        {
+             return false;
+        }
 
         glutMainLoop();
         return true;
@@ -123,7 +136,7 @@ private:
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (const GLvoid*)12 );
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-
+        texturePtr->Bind(GL_TEXTURE0);
         glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
@@ -250,6 +263,9 @@ private:
     GLfloat s;
     GLuint gWorldLocation;
     Model* meshPtr_;
+    Texturing* texturePtr;
+    SkyBox* skyboxPtr;
+
 
 };
 
