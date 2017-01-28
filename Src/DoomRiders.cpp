@@ -14,7 +14,7 @@
 #include "DR_Spectator.h"
 #include "DR_ModelLoader.h"
 #include "DR_Texture.h"
-#include "DR_Skybox.h"
+
 
 
 #define WINDOW_WIDTH 1024
@@ -84,20 +84,12 @@ public:
         CreateIndexBuffer();
 
         GameShader(pVSFileName, pFSFileName);
-        texturePtr = new Texturing("bricks.jpg");
+        texturePtr = new Texture("bricks.jpg");
+        std::cout<<"Da vidimo"<<std::endl;
+        texturePtr->Load();
+        std::cout<<"Da vidimo"<<std::endl;
         camera_ = new Spectator();
-        skyboxPtr = new SkyBox( camera_, gPersProjInfo);
-
-        if (!skyboxPtr->Init(".",
-             "../Content/sp3right.jpg",
-             "../Content/sp3left.jpg",
-             "../Content/sp3top.jpg",
-             "../Content/sp3bot.jpg",
-             "../Content/sp3front.jpg",
-             "../Content/sp3back.jpg"))
-        {
-             return false;
-        }
+        std::cout<<"Da vidimo"<<std::endl;
 
         glutMainLoop();
         return true;
@@ -263,8 +255,8 @@ private:
     GLfloat s;
     GLuint gWorldLocation;
     Model* meshPtr_;
-    Texturing* texturePtr;
-    SkyBox* skyboxPtr;
+    Texture* texturePtr;
+
 
 
 };

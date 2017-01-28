@@ -1,6 +1,5 @@
+
 #include <vector>
-
-
 #include <GL/glew.h>
 #include "ogldev_math_3d.h"
 
@@ -14,36 +13,6 @@ typedef struct triangle
     }
 
 }FACE;
-
-
-
-
-class Texturing
-{
-public:
-    Texturing(const std::string& FileName);
-
-    bool Load();
-
-    void Bind(GLenum TextureUnit);
-
-private:
-    const char* fileName_;
-    GLuint Texture_;
-
-
-
-
-};
-
-
-
-
-
-
-
-
-
 
 
 class Model

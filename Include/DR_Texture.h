@@ -3,22 +3,14 @@
 
 #include <string>
 #include <GL/glew.h>
-#include <SOIL/SOIL.h>
 
 using namespace std;
 
-class CubemapTexture
+class Texture
 {
 public:
 
-    CubemapTexture(const string& Directory,
-                   const string& PosXFilename,
-                   const string& NegXFilename,
-                   const string& PosYFilename,
-                   const string& PosYFilename,
-                   const string& PosZFilename,
-                   const string& PosZFilename);
-    ~CubemapTexture();
+    Texture(const char* textureFileName);
 
     bool Load();
 
@@ -26,8 +18,10 @@ public:
 
 private:
 
-    string m_fileNames[6];
-    GLuint m_textureObj;
+    GLuint textureTarget_;
+    GLuint textureObj_;
+    const char* textureFilename_ ;
+
 };
 
 #endif // TEXTURE_H

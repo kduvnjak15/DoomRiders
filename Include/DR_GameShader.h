@@ -3,36 +3,36 @@
 #include <list>
 #include <GL/glew.h>
 
-class Technique
-{
-public:
-    Technique();
+//class Technique
+//{
+//public:
+//    Technique();
 
-    virtual ~Technique();
+//    virtual ~Technique();
 
-    virtual bool Init();
+//    virtual bool Init();
 
-    void Enable();
+//    void Enable();
 
 
-protected:
+//protected:
 
-    bool AddShader(GLenum ShaderType, const char* pFileName);
+//    bool AddShader(GLenum ShaderType, const char* pFileName);
 
-    bool Finalize();
+//    bool Finalize();
 
-    GLint GetUniformLocation(const char* pUniformName);
+//    GLint GetUniformLocation(const char* pUniformName);
 
-    GLint GetProgramParam(GLint param);
+//    GLint GetProgramParam(GLint param);
 
-    GLint m_shaderProg;
+//    GLint m_shaderProg;
 
-private:
+//private:
 
-    typedef std::list<GLuint> ShaderObjList;
-    ShaderObjList m_shaderObjList;
+//    typedef std::list<GLuint> ShaderObjList;
+//    ShaderObjList m_shaderObjList;
 
-};
+//};
 
 
 

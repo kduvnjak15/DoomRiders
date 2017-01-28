@@ -7,6 +7,8 @@
 
 #include <ogldev_util.h>
 
+
+/*
 Technique::Technique()
 {
     m_shaderProg = 0;
@@ -52,7 +54,7 @@ bool Technique::AddShader(GLenum ShaderType, const char *pFileName)
 
     if (ShaderObj == 0)
     {
-        printf(stderr, "Error creating shader type %d\n", ShaderType );
+        fprintf(stderr, "Error creating shader type %d\n", ShaderType);
         return false;
     }
 
@@ -61,7 +63,7 @@ bool Technique::AddShader(GLenum ShaderType, const char *pFileName)
 
     const GLchar* p[1];
     p[0] = s.c_str();
-    GLint Lengths[1] = (GLint)strlen(s);
+    GLint Lengths[1] = { (GLint)s.size() };
 
     glShaderSource(ShaderObj, 1, p, Lengths);
     glCompileShader(ShaderObj);
@@ -73,7 +75,7 @@ bool Technique::AddShader(GLenum ShaderType, const char *pFileName)
     {
         GLchar InfoLog[1024];
         glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
-        fprintf(stderrr, "Error compiling '%s':   '%s'\n", pFileName, InfoLog );
+        fprintf(stderr, "Error compiling '%s':   '%s'\n", pFileName, InfoLog );
         return false;
     }
 
@@ -110,7 +112,8 @@ bool Technique::Finalize()
     }
 
     // Delete the intermediate shader object that have been added to the program
-    for ( auto it = m_shaderObjList.begin(); it != m_shaderObjList.end(); it++)
+
+    for ( ShaderObjList::iterator it = m_shaderObjList.begin(); it != m_shaderObjList.end(); it++)
     {
         glDeleteShader(*it);
     }
@@ -143,7 +146,7 @@ GLint Technique::GetProgramParam(GLint param)
     return ret;
 }
 
-
+*/
 
 
 

@@ -3,38 +3,6 @@
 #include <sstream>
 #include <string>
 #include "DR_ModelLoader.h"
-#include "SOIL/src/SOIL.h"
-
-
-
-Texturing::Texturing(const std::string& FileName)
-{
-    int width, height;
-    unsigned char* image = SOIL_load_image("../Content/bricks.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-
-    glGenTextures(1, &Texture_);
-    glBindTexture(GL_TEXTURE_2D, Texture_);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-
-    SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-void Texturing::Bind(GLenum TextureUnit)
-{
-    glActiveTexture(TextureUnit);
-    glBindTexture(GL_TEXTURE_2D, Texture_);
-}
-
 
 
 Model::Model(const char* meshFilename)

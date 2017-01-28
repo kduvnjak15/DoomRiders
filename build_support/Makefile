@@ -187,6 +187,30 @@ home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.cpp.s:
 	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.cpp.s
 .PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.cpp.s
 
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.o: home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.o
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.o
+
+# target to build an object file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.o:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.o
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.o
+
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.i: home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.i
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.i
+
+# target to preprocess a source file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.i:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.i
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.i
+
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.s: home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.s
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.s
+
+# target to generate assembly for a file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.s:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.s
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.cpp.s
+
 home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.o: home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.cpp.o
 .PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.o
 
@@ -210,6 +234,30 @@ home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.s: home/duvnjakk/workspace/
 home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.cpp.s:
 	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.cpp.s
 .PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.cpp.s
+
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.o: home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.o
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.o
+
+# target to build an object file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.o:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.o
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.o
+
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.i: home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.i
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.i
+
+# target to preprocess a source file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.i:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.i
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.i
+
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.s: home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.s
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.s
+
+# target to generate assembly for a file
+home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.s:
+	$(MAKE) -f CMakeFiles/DoomRiders.dir/build.make CMakeFiles/DoomRiders.dir/home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.s
+.PHONY : home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.cpp.s
 
 home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.o: home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.cpp.o
 .PHONY : home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.o
@@ -301,9 +349,15 @@ help:
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.o"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.i"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Pipeline.s"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.o"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.i"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Skybox.s"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.o"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.i"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Spectator.s"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.o"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.i"
+	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DR_Texture.s"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.o"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.i"
 	@echo "... home/duvnjakk/workspace/cmakemanual/Src/DoomRiders.s"
