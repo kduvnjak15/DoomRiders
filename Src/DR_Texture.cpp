@@ -12,19 +12,20 @@ bool Texture::Load()
 {
     glGenTextures(1, &textureObj_);
     glBindTexture(textureTarget_, textureObj_);
-    std::cout<<"Samo hrabro"<<std::endl;
     int width, height;
-    std::cout<<"Samo hrabro"<<std::endl;
 
     unsigned char* image =SOIL_load_image("../Content/bricks.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-    std::cout<<"Samo hrabro"<<image<<std::endl;
-    glTexImage2D(textureTarget_, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-    std::cout<<"Samo hrabro"<<std::endl;
+    glTexImage2D(textureTarget_, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 
     glTexParameterf(textureTarget_, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(textureTarget_, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+    glTexParameteri(textureTarget_, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(textureTarget_, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(textureTarget_, GL_TEXTURE_WRAP_R, GL_REPEAT);
+    glGenerateMipmap(GL_TEXTURE_2D);
     glBindTexture(textureTarget_, 0);
+
+    SOIL_free_image_data(image);
 
     return true;
 }

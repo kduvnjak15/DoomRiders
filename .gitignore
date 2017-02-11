@@ -1,3 +1,4 @@
 MachP.pro
 build_support/CMakeFiles
-
+*pro.user*
+build_support/DoomRiders

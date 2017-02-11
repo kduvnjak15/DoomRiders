@@ -32,7 +32,16 @@ SOURCES += \
     ../../Include/FreetypeGL/vertex-buffer.c \
     ../../Src/DR_GameShader.cpp \
     ../../Src/DR_Spectator.cpp \
-    ../../Src/DR_ModelLoader.cpp
+    ../../Src/DR_ModelLoader.cpp \
+    ../../Include/SOIL/src/test_SOIL.cpp \
+    ../../Src/DR_Skybox.cpp \
+    ../../Src/DR_Texture.cpp \
+    ../../Include/SOIL/src/original/stb_image-1.09.c \
+    ../../Include/SOIL/src/original/stb_image-1.16.c \
+    ../../Include/SOIL/src/image_DXT.c \
+    ../../Include/SOIL/src/image_helper.c \
+    ../../Include/SOIL/src/SOIL.c \
+    ../../Include/SOIL/src/stb_image_aug.c
 
 HEADERS += \
     ../../Include/GL/freeglut.h \
@@ -358,5 +367,13 @@ HEADERS += \
     ../../Include/DR_GameShader.h \
     ../../Include/DR_Pipeline.h \
     ../../Include/DR_Spectator.h \
-    ../../Include/DR_ModelLoader.h
+    ../../Include/DR_ModelLoader.h \
+    ../../Include/SOIL/src/image_DXT.h \
+    ../../Include/SOIL/src/image_helper.h \
+    ../../Include/SOIL/src/SOIL.h \
+    ../../Include/SOIL/src/stb_image_aug.h \
+    ../../Include/SOIL/src/stbi_DDS_aug.h \
+    ../../Include/SOIL/src/stbi_DDS_aug_c.h \
+    ../../Include/DR_Skybox.h \
+    ../../Include/DR_Texture.h
 

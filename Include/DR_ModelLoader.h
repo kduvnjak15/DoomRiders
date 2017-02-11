@@ -29,6 +29,7 @@ private:
     void loadMesh();
 
     const char* meshPath_;
+    vector<Vector2f> texVertices_;
     vector<Vector3f> vertices_;
     vector<FACE> faces_;
 

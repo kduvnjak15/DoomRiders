@@ -85,11 +85,8 @@ public:
 
         GameShader(pVSFileName, pFSFileName);
         texturePtr = new Texture("bricks.jpg");
-        std::cout<<"Da vidimo"<<std::endl;
         texturePtr->Load();
-        std::cout<<"Da vidimo"<<std::endl;
         camera_ = new Spectator();
-        std::cout<<"Da vidimo"<<std::endl;
 
         glutMainLoop();
         return true;
@@ -120,13 +117,29 @@ private:
         P.SetCamera(*camera_);
         P.SetPerspectiveProj(gPersProjInfo);
 
+
         glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, (const GLfloat*)P.TransMatrix());
 
+        // First attribute buffer : vertices
         glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (const GLvoid*)12 );
+        glVertexAttribPointer(0,        // attribute, no particula reason, must mach layout in the shader
+                              3,        // size
+                              GL_FLOAT, // type
+                              GL_FALSE, // normalized?
+                              0,        // stride
+                              (const void* )0); // array buffer offset
+
+        // Second attribute buffer : UVs
+        glEnableVertexAttribArray(1);
+      //  glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+        glVertexAttribPointer(1,    // atribute
+                              2,    // size
+                              GL_FLOAT, //type
+                              GL_FALSE, // normalized
+                              0,        //stride
+                              (const GLvoid*)12 );
+
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         texturePtr->Bind(GL_TEXTURE0);
         glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
@@ -162,7 +175,6 @@ private:
     virtual void Mouse( unsigned int x, unsigned int y)
     {
         camera_->updateOrientation(x, y);
-       //  camera_->writeOrientation();
         glutPostRedisplay();
     }
 
@@ -196,16 +208,6 @@ private:
 
     void CreateVertexBuffer()
     {
-        float size = 1.0f;
-        Vector3f Vertices[8] = { Vector3f(-size, -size, -size),
-                        Vector3f(-size,  size, -size),
-                        Vector3f( size,  size, -size),
-                        Vector3f( size, -size, -size),
-                        Vector3f( size, -size,  size),
-                        Vector3f( size,  size,  size),
-                        Vector3f(-size,  size,  size),
-                        Vector3f(-size, -size,  size) };
-
         float vertices[ meshPtr_->getVertices().size() * 3];
 
         for (int i = 0; i< meshPtr_->getVertices().size(); i++)

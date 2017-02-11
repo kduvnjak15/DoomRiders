@@ -42,6 +42,10 @@ void Model::loadMesh()
         {
             faces_.push_back(FACE(x, y, z));
         }
+        if (strcmp(primitive.c_str(), "vt") == 0)
+        {
+            texVertices_.push_back(Vector2f(x, y));
+        }
     }
 
     ifs.close();
