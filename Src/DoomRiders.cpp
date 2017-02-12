@@ -161,6 +161,8 @@ private:
             camera_->rise();
         if (z == 'i')
             camera_->fall();
+        if (z == ' ')
+            std::cout<<"load new"<<std::endl;
 
         camera_->writePos();
         glutPostRedisplay();
@@ -347,6 +349,8 @@ private:
     GLuint gWorldLocation;
     Model* meshPtr_;
     Texture* texturePtr;
+
+    vector<Model> factory_;
 
 
 
