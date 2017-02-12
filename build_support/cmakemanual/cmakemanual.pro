@@ -377,3 +377,7 @@ HEADERS += \
     ../../Include/DR_Skybox.h \
     ../../Include/DR_Texture.h
 
+OTHER_FILES += \
+    ../shader.fs \
+    ../shader.vs
+

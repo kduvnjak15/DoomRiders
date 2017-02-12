@@ -62,7 +62,7 @@ public:
 
     bool Run()
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.06f, 0.0f, 0.0f);
         glFrontFace(GL_CW);
         glCullFace(GL_BACK);
         glEnable(GL_CULL_FACE);
@@ -71,14 +71,12 @@ public:
         defineCallbacks();
 
         std::cout<<meshPtr_<<std::endl;
-        meshPtr_ = new Model("../Content/cube3.obj");
+        meshPtr_ = new Model("../Content/tetra.obj");
 
         CreateVertexBuffer();
         CreateIndexBuffer();
 
         GameShader(pVSFileName, pFSFileName);
-        texturePtr = new Texture("bricks.jpg");
-        texturePtr->Load();
         camera_ = new Spectator();
 
         glutMainLoop();
@@ -123,21 +121,17 @@ private:
                               0,        // stride
                               (const void* )0); // array buffer offset
 
-        // Second attribute buffer : UVs
+        // Second attribute buffer : indices
         glEnableVertexAttribArray(1);
-      //  glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
         glVertexAttribPointer(1,    // atribute
-                              2,    // size
+                              3,    // size
                               GL_FLOAT, //type
                               GL_FALSE, // normalized
                               0,        //stride
                               (const GLvoid*)12 );
 
-        glBindBuffer(GL_ARRAY_BUFFER, TBO);
-        texturePtr->Bind(GL_TEXTURE0);
-//        glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
-        glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
-
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
@@ -206,98 +200,6 @@ private:
     void CreateVertexBuffer()
     {
 
-#define novi_kod
-#ifdef novi_kod
-
-
-        static const GLfloat g_vertex_buffer_data[] = {
-            -1.0f,-1.0f,-1.0f,
-            -1.0f,-1.0f, 1.0f,
-            -1.0f, 1.0f, 1.0f,
-             1.0f, 1.0f,-1.0f,
-            -1.0f,-1.0f,-1.0f,
-            -1.0f, 1.0f,-1.0f,
-             1.0f,-1.0f, 1.0f,
-            -1.0f,-1.0f,-1.0f,
-             1.0f,-1.0f,-1.0f,
-             1.0f, 1.0f,-1.0f,
-             1.0f,-1.0f,-1.0f,
-            -1.0f,-1.0f,-1.0f,
-            -1.0f,-1.0f,-1.0f,
-            -1.0f, 1.0f, 1.0f,
-            -1.0f, 1.0f,-1.0f,
-             1.0f,-1.0f, 1.0f,
-            -1.0f,-1.0f, 1.0f,
-            -1.0f,-1.0f,-1.0f,
-            -1.0f, 1.0f, 1.0f,
-            -1.0f,-1.0f, 1.0f,
-             1.0f,-1.0f, 1.0f,
-             1.0f, 1.0f, 1.0f,
-             1.0f,-1.0f,-1.0f,
-             1.0f, 1.0f,-1.0f,
-             1.0f,-1.0f,-1.0f,
-             1.0f, 1.0f, 1.0f,
-             1.0f,-1.0f, 1.0f,
-             1.0f, 1.0f, 1.0f,
-             1.0f, 1.0f,-1.0f,
-            -1.0f, 1.0f,-1.0f,
-             1.0f, 1.0f, 1.0f,
-            -1.0f, 1.0f,-1.0f,
-            -1.0f, 1.0f, 1.0f,
-             1.0f, 1.0f, 1.0f,
-            -1.0f, 1.0f, 1.0f,
-             1.0f,-1.0f, 1.0f
-        };
-        glGenBuffers(1, &VBO);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
-
-        static const GLfloat g_uv_buffer_data[] = {
-            0.000059f, 1.0f-0.000004f,
-            0.000103f, 1.0f-0.336048f,
-            0.335973f, 1.0f-0.335903f,
-            1.000023f, 1.0f-0.000013f,
-            0.667979f, 1.0f-0.335851f,
-            0.999958f, 1.0f-0.336064f,
-            0.667979f, 1.0f-0.335851f,
-            0.336024f, 1.0f-0.671877f,
-            0.667969f, 1.0f-0.671889f,
-            1.000023f, 1.0f-0.000013f,
-            0.668104f, 1.0f-0.000013f,
-            0.667979f, 1.0f-0.335851f,
-            0.000059f, 1.0f-0.000004f,
-            0.335973f, 1.0f-0.335903f,
-            0.336098f, 1.0f-0.000071f,
-            0.667979f, 1.0f-0.335851f,
-            0.335973f, 1.0f-0.335903f,
-            0.336024f, 1.0f-0.671877f,
-            1.000004f, 1.0f-0.671847f,
-            0.999958f, 1.0f-0.336064f,
-            0.667979f, 1.0f-0.335851f,
-            0.668104f, 1.0f-0.000013f,
-            0.335973f, 1.0f-0.335903f,
-            0.667979f, 1.0f-0.335851f,
-            0.335973f, 1.0f-0.335903f,
-            0.668104f, 1.0f-0.000013f,
-            0.336098f, 1.0f-0.000071f,
-            0.000103f, 1.0f-0.336048f,
-            0.000004f, 1.0f-0.671870f,
-            0.336024f, 1.0f-0.671877f,
-            0.000103f, 1.0f-0.336048f,
-            0.336024f, 1.0f-0.671877f,
-            0.335973f, 1.0f-0.335903f,
-            0.667969f, 1.0f-0.671889f,
-            1.000004f, 1.0f-0.671847f,
-            0.667979f, 1.0f-0.335851f
-        };
-
-
-        glGenBuffers(1, &TBO);
-        glBindBuffer(GL_ARRAY_BUFFER, TBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
-
-#else
         float vertices[ meshPtr_->getVertices().size() * 3];
 
         for (int i = 0; i< meshPtr_->getVertices().size(); i++)
@@ -313,7 +215,7 @@ private:
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-#endif
+
     }
 
     void CreateIndexBuffer()
@@ -335,7 +237,6 @@ private:
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
         std::cout<<"indexbuff"<<std::endl;
-
 
     }
 
