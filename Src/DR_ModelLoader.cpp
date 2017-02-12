@@ -13,6 +13,11 @@ Model::Model(const char* meshFilename)
     loadMesh();
     std::cout<<faces_.size()<<std::endl;
     std::cout<<&faces_<<" -- "<<&getFaces()<<std::endl;
+
+    for (int i = 0; i<getTextureVertices().size(); i++)
+    {
+        std::cout<<getTextureVertices()[i].x<<getTextureVertices()[i].y<<std::endl;
+    }
 }
 
 void Model::loadMesh()
@@ -59,4 +64,9 @@ vector<FACE>& Model::getFaces()
 vector<Vector3f>& Model::getVertices()
 {
     return vertices_;
+}
+
+vector<Vector2f>& Model::getTextureVertices()
+{
+    return texVertices_;
 }

@@ -23,6 +23,8 @@ public:
     void Draw();
     vector<Vector3f>& getVertices();
     vector<FACE>& getFaces();
+    vector<Vector2f>& getTextureVertices();
+
 
 private:
 

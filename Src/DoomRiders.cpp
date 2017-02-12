@@ -15,15 +15,11 @@
 #include "DR_ModelLoader.h"
 #include "DR_Texture.h"
 
-
-
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 768
 
-
 const static float EDGE_STEP = 0.5f;
 const static int MARGIN = 10;
-
 
 class initialCallbacks // abstract class; cannot be instatiated
 {
@@ -38,12 +34,9 @@ public:
 };
 
 
-
-
 // Points to the object implementing the ICallbacks interface which was delivered to
 // GLUTBackendRun(). All events are forwarded to this object.
 static initialCallbacks* s_pCallbacks = NULL;
-
 
 PersProjInfo gPersProjInfo;
 
@@ -123,7 +116,7 @@ private:
         // First attribute buffer : vertices
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0,        // attribute, no particula reason, must mach layout in the shader
+        glVertexAttribPointer(0,        // attribute, no particular reason, must mach layout in the shader
                               3,        // size
                               GL_FLOAT, // type
                               GL_FALSE, // normalized?
@@ -140,9 +133,11 @@ private:
                               0,        //stride
                               (const GLvoid*)12 );
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+        glBindBuffer(GL_ARRAY_BUFFER, TBO);
         texturePtr->Bind(GL_TEXTURE0);
-        glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
+//        glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles
+
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
@@ -208,6 +203,99 @@ private:
 
     void CreateVertexBuffer()
     {
+
+#define novi_kod
+#ifdef novi_kod
+
+
+        static const GLfloat g_vertex_buffer_data[] = {
+            -1.0f,-1.0f,-1.0f,
+            -1.0f,-1.0f, 1.0f,
+            -1.0f, 1.0f, 1.0f,
+             1.0f, 1.0f,-1.0f,
+            -1.0f,-1.0f,-1.0f,
+            -1.0f, 1.0f,-1.0f,
+             1.0f,-1.0f, 1.0f,
+            -1.0f,-1.0f,-1.0f,
+             1.0f,-1.0f,-1.0f,
+             1.0f, 1.0f,-1.0f,
+             1.0f,-1.0f,-1.0f,
+            -1.0f,-1.0f,-1.0f,
+            -1.0f,-1.0f,-1.0f,
+            -1.0f, 1.0f, 1.0f,
+            -1.0f, 1.0f,-1.0f,
+             1.0f,-1.0f, 1.0f,
+            -1.0f,-1.0f, 1.0f,
+            -1.0f,-1.0f,-1.0f,
+            -1.0f, 1.0f, 1.0f,
+            -1.0f,-1.0f, 1.0f,
+             1.0f,-1.0f, 1.0f,
+             1.0f, 1.0f, 1.0f,
+             1.0f,-1.0f,-1.0f,
+             1.0f, 1.0f,-1.0f,
+             1.0f,-1.0f,-1.0f,
+             1.0f, 1.0f, 1.0f,
+             1.0f,-1.0f, 1.0f,
+             1.0f, 1.0f, 1.0f,
+             1.0f, 1.0f,-1.0f,
+            -1.0f, 1.0f,-1.0f,
+             1.0f, 1.0f, 1.0f,
+            -1.0f, 1.0f,-1.0f,
+            -1.0f, 1.0f, 1.0f,
+             1.0f, 1.0f, 1.0f,
+            -1.0f, 1.0f, 1.0f,
+             1.0f,-1.0f, 1.0f
+        };
+        glGenBuffers(1, &VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+
+        static const GLfloat g_uv_buffer_data[] = {
+            0.000059f, 1.0f-0.000004f,
+            0.000103f, 1.0f-0.336048f,
+            0.335973f, 1.0f-0.335903f,
+            1.000023f, 1.0f-0.000013f,
+            0.667979f, 1.0f-0.335851f,
+            0.999958f, 1.0f-0.336064f,
+            0.667979f, 1.0f-0.335851f,
+            0.336024f, 1.0f-0.671877f,
+            0.667969f, 1.0f-0.671889f,
+            1.000023f, 1.0f-0.000013f,
+            0.668104f, 1.0f-0.000013f,
+            0.667979f, 1.0f-0.335851f,
+            0.000059f, 1.0f-0.000004f,
+            0.335973f, 1.0f-0.335903f,
+            0.336098f, 1.0f-0.000071f,
+            0.667979f, 1.0f-0.335851f,
+            0.335973f, 1.0f-0.335903f,
+            0.336024f, 1.0f-0.671877f,
+            1.000004f, 1.0f-0.671847f,
+            0.999958f, 1.0f-0.336064f,
+            0.667979f, 1.0f-0.335851f,
+            0.668104f, 1.0f-0.000013f,
+            0.335973f, 1.0f-0.335903f,
+            0.667979f, 1.0f-0.335851f,
+            0.335973f, 1.0f-0.335903f,
+            0.668104f, 1.0f-0.000013f,
+            0.336098f, 1.0f-0.000071f,
+            0.000103f, 1.0f-0.336048f,
+            0.000004f, 1.0f-0.671870f,
+            0.336024f, 1.0f-0.671877f,
+            0.000103f, 1.0f-0.336048f,
+            0.336024f, 1.0f-0.671877f,
+            0.335973f, 1.0f-0.335903f,
+            0.667969f, 1.0f-0.671889f,
+            1.000004f, 1.0f-0.671847f,
+            0.667979f, 1.0f-0.335851f
+        };
+
+
+        glGenBuffers(1, &TBO);
+        glBindBuffer(GL_ARRAY_BUFFER, TBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);
+
+#else
         float vertices[ meshPtr_->getVertices().size() * 3];
 
         for (int i = 0; i< meshPtr_->getVertices().size(); i++)
@@ -223,7 +311,7 @@ private:
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
+#endif
     }
 
     void CreateIndexBuffer()
@@ -254,6 +342,7 @@ private:
     Spectator* camera_ ;
     GLuint VBO;
     GLuint IBO;
+    GLuint TBO;
     GLfloat s;
     GLuint gWorldLocation;
     Model* meshPtr_;

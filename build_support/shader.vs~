@@ -10,5 +10,5 @@ out vec2 texcoord;
 void main()
 {
     gl_Position = gWorld * vec4(Position, 1.0);
-    texcoord = TexCoord
+    texcoord = TexCoord; 
 }
