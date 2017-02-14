@@ -43,10 +43,13 @@ public:
     GameShader(const char* vFilename, const char* fFilename);
 
     GLuint GW;
+    GLuint gSampler;
+
+    GLuint ShaderProgram_;
 
 private:
-    GLuint ShaderProgram_;
+
     GLuint vertexShaderObj_;
     GLuint fragmentShaderObj_;
-    GLuint gSampler;
+
 };

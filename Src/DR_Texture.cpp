@@ -15,6 +15,12 @@ bool Texture::Load()
     int width, height;
 
     unsigned char* image =SOIL_load_image("../Content/bricks.jpg", &width, &height, 0, SOIL_LOAD_RGB);
+    if (image == 0)
+    {
+        std::cout<<"TEKSTURE NE VALJAJU "<<std::endl;
+        return false;
+    }
+
     glTexImage2D(textureTarget_, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 
     glTexParameterf(textureTarget_, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

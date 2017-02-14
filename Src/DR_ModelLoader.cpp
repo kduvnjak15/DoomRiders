@@ -14,10 +14,6 @@ Model::Model(const char* meshFilename)
     std::cout<<faces_.size()<<std::endl;
     std::cout<<&faces_<<" -- "<<&getFaces()<<std::endl;
 
-    for (int i = 0; i<getTextureVertices().size(); i++)
-    {
-        std::cout<<getTextureVertices()[i].x<<getTextureVertices()[i].y<<std::endl;
-    }
 }
 
 void Model::loadMesh()
@@ -25,6 +21,12 @@ void Model::loadMesh()
     std::ifstream ifs;
 
     ifs.open ( meshPath_ , std::ifstream::in);
+
+    if (!ifs.is_open())
+    {
+        std::cout<<"No "<<meshPath_<<" file!"<<std::endl;
+        return ;
+    }
 
     float x, y, z;
 
@@ -68,5 +70,6 @@ vector<Vector3f>& Model::getVertices()
 
 vector<Vector2f>& Model::getTextureVertices()
 {
-    return texVertices_;
+    if (texVertices_.size() != 0)
+        return texVertices_;
 }

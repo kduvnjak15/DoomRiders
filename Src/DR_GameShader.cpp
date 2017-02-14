@@ -254,7 +254,7 @@ GameShader::GameShader(const char *vFilename, const char *fFilename)
     glDeleteShader(fragmentShaderObj_);
 
     GW = glGetUniformLocation(ShaderProgram_, "gWorld");
-//    gSampler = glGetUniformLocation(ShaderProgram_, "gSampler");
-    //assert(gWorldLocation != 0xFFFFFFFF);
+    gSampler = glGetUniformLocation(ShaderProgram_, "textureSampler");
+    //assert(gSampler!= 0xFFFFFFFF);
 }
 
