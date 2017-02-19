@@ -63,9 +63,9 @@ public:
     bool Run()
     {
         glClearColor(0.0f, 0.2f, 0.1f, 0.0f);
-//        glFrontFace(GL_CW);
-//        glCullFace(GL_BACK);
-//        glEnable(GL_CULL_FACE);
+        glFrontFace(GL_CW);
+        glCullFace(GL_BACK);
+        glEnable(GL_CULL_FACE);
 
       //  glEnable(GL_DEPTH_TEST);
 
@@ -74,19 +74,15 @@ public:
         std::cout<<meshPtr_<<std::endl;
         meshPtr_ = new Model("../Content/tetra.obj");
 
+//        texturePtr = new Texture("../Content/bricks.jpg");
 
+//        texturePtr->Load();
 
-        texturePtr = new Texture("../Content/bricks.jpg");
-        texturePtr->Load();
-
-        CreateVertexBuffer();
-        CreateIndexBuffer();
-
-        texturePtr->Bind(GL_TEXTURE0);
+//        texturePtr->Bind(GL_TEXTURE0);
 
         GameShader* shaderObj = new GameShader(pVSFileName, pFSFileName);
 
-        glUniform1i( glGetUniformLocation(shaderObj->ShaderProgram_, "textureSampler") , 0);
+        createVAO();
 
         camera_ = new Spectator();
 
@@ -119,36 +115,14 @@ private:
         P.SetCamera(*camera_);
         P.SetPerspectiveProj(gPersProjInfo);
 
-
         glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, (const GLfloat*)P.TransMatrix());
 
+        glBindVertexArray(mVAO);
 
+        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, (const GLvoid*)0);
 
-        // First attribute buffer : vertices
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0,        // attribute, no particular reason, must mach layout in the shader
-                              3,        // size
-                              GL_FLOAT, // type
-                              GL_FALSE, // normalized?
-                              5 * sizeof(float),        // stride
-                              (const void* )0); // array buffer offset
+        glBindVertexArray(0);
 
-        // Second attribute buffer : uvs
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1,    // atribute
-                              2,    // size
-                              GL_FLOAT, //type
-                              GL_FALSE, // normalized
-                              5 * sizeof(float),        //stride
-                              (const GLvoid*)(3*sizeof(float) ) );
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-        texturePtr->Bind(GL_TEXTURE0);
-        glDrawElements(GL_TRIANGLES, 48, GL_UNSIGNED_INT, 0);
-
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
         glutSwapBuffers();
     }
 
@@ -214,89 +188,83 @@ private:
     void CreateVertexBuffer()
     {
 
-#ifndef novi_kod
-        float vertices[ meshPtr_->getVertices().size() * 5];
+        GLfloat vertices[ meshPtr_->getVertices().size() * 3];
 
         for (int i = 0; i<meshPtr_->getVertices().size(); i++)
         {
             Vector3f f_ = meshPtr_->getVertices()[i];
 
-            vertices[i*5] = f_.x;
-            vertices[i*5+1] = f_.y;
-            vertices[i*5+2] = f_.z;
+            vertices[i*3] = f_.x;
+            vertices[i*3+1] = f_.y;
+            vertices[i*3+2] = f_.z;
         }
 
-
-
-        for (int i = 0; i<meshPtr_->getTextureVertices().size(); i++)
-        {
-            Vector2f vt_ = meshPtr_->getTextureVertices()[i];
-            vertices[i*5+3] =vt_.x;
-            vertices[i*5+4] =vt_.y;
-        }
-
-        for(int i = 0; i<meshPtr_->getVertices().size()*5; i++)
+        for(int i = 0; i<meshPtr_->getVertices().size()*3; i++)
         {
             std::cout<<vertices[i]<<", ";
         }
         std::cout<<sizeof(vertices)<<std::endl;
 
-#else
-
-        float vertices[ meshPtr_->getVertices().size() * 3];
-
-        for (int i = 0; i< meshPtr_->getVertices().size(); i++)
-        {
-            Vector3f f_ = meshPtr_->getVertices()[i];
-
-
-
-            vertices[i*3] = f_.x;
-            vertices[i*3+1] = f_.y;
-            vertices[i*3+2] = f_.z;
-        }
-#endif
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+
     }
 
     void CreateIndexBuffer()
     {
         unsigned int indices[ meshPtr_->getFaces().size() *3  ];
 
-//        std::cout<<"sizeofindices"<<sizeof(indices )*3/sizeof(FACE)<<std::endl;
+        std::cout<<"sizeoffaces"<<meshPtr_->getFaces().size() <<std::endl;
 
-//        for (int i = 0; i> meshPtr_->getFaces().size(); i++)
-//        {
-//            FACE f_ = meshPtr_->getFaces()[i];
+        for (int i = 0; i< meshPtr_->getFaces().size(); i++)
+        {
+            FACE f_ = meshPtr_->getFaces()[i];
 
-//            indices[i*3] = f_.f1;
-//            indices[i*3+1] = f_.f2;
-//            indices[i*3+2] = f_.f3;
-//        }
-
-        indices[0] = 1;
-        indices[1] = 2;
-        indices[2] = 3;
-        indices[3] = 1;
-        indices[4] = 4;
-        indices[5] = 3;
+            indices[i*3] = f_.f1 -1 ;
+            indices[i*3+1] = f_.f2 -1 ;
+            indices[i*3+2] = f_.f3 -1 ;
+        }
 
 
+        for(int i = 0; i<meshPtr_->getFaces().size()*3; i++)
+        {
+            std::cout<<indices[i]<<"* ";
+        }
+        std::cout<<sizeof(indices)<<std::endl;
 
         glGenBuffers(1, &IBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
         std::cout<<"indexbuff"<<std::endl;
+
     }
 
 
+    void createVAO()
+    {
+        glGenVertexArrays(1, &mVAO);
+        glBindVertexArray(mVAO);
+
+        CreateVertexBuffer();
+        CreateIndexBuffer();
+
+
+        glVertexAttribPointer(0,3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), (const void*)0);
+        glEnableVertexAttribArray(0);
+        // Make sure the VAO is not changed from outside code
+        glBindVertexArray(0);
+    }
+
 private:
+
     Spectator* camera_ ;
     GLuint VBO;
     GLuint IBO;
     GLuint TBO;
+
+    GLuint mVAO;
 
     GLfloat s;
     GLuint gWorldLocation;

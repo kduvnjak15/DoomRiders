@@ -51,7 +51,7 @@ bool ReadFile(const char* pFileName, string& outFile)
         ret = true;
     }
     else {
-        OGLDEV_FILE_ERROR(pFileName);
+        ret = false;
     }
     
     return ret;

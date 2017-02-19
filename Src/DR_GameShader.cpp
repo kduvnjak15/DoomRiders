@@ -171,8 +171,6 @@ GameShader::GameShader(const char *vFilename, const char *fFilename)
     };
 
 
-    glUniform1i(gSampler, 0);
-
 //vertex shading
 
     vertexShaderObj_ = glCreateShader(GL_VERTEX_SHADER);
@@ -255,6 +253,6 @@ GameShader::GameShader(const char *vFilename, const char *fFilename)
 
     GW = glGetUniformLocation(ShaderProgram_, "gWorld");
     gSampler = glGetUniformLocation(ShaderProgram_, "textureSampler");
-    //assert(gSampler!= 0xFFFFFFFF);
+   // assert(gSampler!= 0xFFFFFFFF);
 }
 
