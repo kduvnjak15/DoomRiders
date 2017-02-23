@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/../DoomRiders.dir/home/p13d93/test/MachP/cmakemanual/Src/main.cpp.o  -o ../DoomRiders  -L./../Lib -rdynamic -lopengl -lGLEW -lGL -lglut -Wl,-rpath,./../Lib 

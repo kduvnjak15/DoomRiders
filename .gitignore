@@ -1,5 +1,5 @@
 MachP.pro
 build_support/CMakeFiles
-*pro.user*
+*.user*
 build_support/DoomRiders
 *.*~

@@ -47,8 +47,8 @@ static initialCallbacks* s_pCallbacks = NULL;
 
 PersProjInfo gPersProjInfo;
 
-const char* pVSFileName = "shader.vs";
-const char* pFSFileName = "shader.fs";
+const char* pVSFileName = "../build_support/shader.vs";
+const char* pFSFileName = "../build_support/shader.fs";
 
 class DoomRiders : public initialCallbacks
 {
@@ -69,7 +69,7 @@ public:
 
     bool Run()
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.1f, 0.2f, 0.1f);
         glFrontFace(GL_CW);
         glCullFace(GL_BACK);
         glEnable(GL_CULL_FACE);
@@ -142,6 +142,7 @@ private:
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         texturePtr->Bind(GL_TEXTURE0);
+
         glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
