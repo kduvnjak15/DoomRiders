@@ -60,3 +60,8 @@ vector<Vector3f>& Model::getVertices()
 {
     return vertices_;
 }
+
+vector<Vector2f>& Model::getTexVertices()
+{
+    return texVertices_;
+}

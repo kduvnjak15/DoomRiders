@@ -44,8 +44,10 @@ public:
 
     GLuint GW;
 
-private:
     GLuint ShaderProgram_;
+
+private:
+
     GLuint vertexShaderObj_;
     GLuint fragmentShaderObj_;
     GLuint gSampler;

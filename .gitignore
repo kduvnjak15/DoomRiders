@@ -3,3 +3,8 @@ build_support/CMakeFiles
 *.user*
 build_support/DoomRiders
 *.*~
+build_support/CMakeCache.txt
+build_support/DoomRiders.cbp
+build_support/Makefile
+build_support/cmake_install.cmake
+

@@ -47,8 +47,8 @@ static initialCallbacks* s_pCallbacks = NULL;
 
 PersProjInfo gPersProjInfo;
 
-const char* pVSFileName = "../build_support/shader.vs";
-const char* pFSFileName = "../build_support/shader.fs";
+const char* pVSFileName = "../Shaders/shader.vs";
+const char* pFSFileName = "../Shaders/shader.fs";
 
 class DoomRiders : public initialCallbacks
 {
@@ -80,12 +80,19 @@ public:
         std::cout<<meshPtr_<<std::endl;
         meshPtr_ = new Model("../Content/cube3.obj");
 
-        CreateVertexBuffer();
-        CreateIndexBuffer();
 
-        GameShader(pVSFileName, pFSFileName);
+        CreateVAO();
+
+        glBindVertexArray(mVAO_);
+
+        shader_ = new GameShader(pVSFileName, pFSFileName);
+
         texturePtr = new Texture("bricks.jpg");
         texturePtr->Load();
+        texturePtr->Bind(GL_TEXTURE0);
+
+        glUniform1i(glGetUniformLocation(shader_->ShaderProgram_, "gSampler"), 0);
+
         camera_ = new Spectator();
 
         glutMainLoop();
@@ -120,33 +127,10 @@ private:
 
         glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, (const GLfloat*)P.TransMatrix());
 
-        // First attribute buffer : vertices
-        glEnableVertexAttribArray(0);
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0,        // attribute, no particula reason, must mach layout in the shader
-                              3,        // size
-                              GL_FLOAT, // type
-                              GL_FALSE, // normalized?
-                              0,        // stride
-                              (const void* )0); // array buffer offset
-
-        // Second attribute buffer : UVs
-        glEnableVertexAttribArray(1);
-      //  glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-        glVertexAttribPointer(1,    // atribute
-                              2,    // size
-                              GL_FLOAT, //type
-                              GL_FALSE, // normalized
-                              0,        //stride
-                              (const GLvoid*)12 );
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         texturePtr->Bind(GL_TEXTURE0);
 
         glDrawElements(GL_TRIANGLES, 72, GL_UNSIGNED_INT, 0);
 
-        glDisableVertexAttribArray(0);
-        glDisableVertexAttribArray(1);
         glutSwapBuffers();
     }
 
@@ -207,19 +191,52 @@ private:
         return true;
     }
 
+    void CreateVAO()
+    {
+
+        glGenVertexArrays(1, &mVAO_);
+        glBindVertexArray( mVAO_);
+
+        CreateVertexBuffer();
+        CreateIndexBuffer();
+
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (const GLvoid*)0);
+        glEnableVertexAttribArray(0);
+
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (const GLvoid*)(2*sizeof(GLfloat)));
+        glEnableVertexAttribArray(1);
+
+        glBindVertexArray(0);
+    }
+
     void CreateVertexBuffer()
     {
-        float vertices[ meshPtr_->getVertices().size() * 3];
+        float vertices[ meshPtr_->getVertices().size() * 5];
 
         for (int i = 0; i< meshPtr_->getVertices().size(); i++)
         {
             Vector3f f_ = meshPtr_->getVertices()[i];
 
-
-            vertices[i*3] = f_.x;
-            vertices[i*3+1] = f_.y;
-            vertices[i*3+2] = f_.z;
+            vertices[i*5]   = f_.x ;
+            vertices[i*5+1] = f_.y ;
+            vertices[i*5+2] = f_.z ;
         }
+
+        for (int i = 0; i< meshPtr_->getTexVertices().size(); i++)
+        {
+            Vector2f vt_ = meshPtr_->getTexVertices()[i];
+
+            vertices[i*5+3] = vt_.x;
+            vertices[i*5+4] = vt_.y;
+        }
+
+        for (int i = 0; i<meshPtr_->getVertices().size()*5; i++)
+        {
+            std::cout<<vertices[i]<<", ";
+        }
+        std::cout<<std::endl;
 
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -238,10 +255,15 @@ private:
             FACE f_ = meshPtr_->getFaces()[i];
 
             indices[i*3] = f_.f1;
-            indices[i*3+1] = f_.f2;
-            indices[i*3+2] = f_.f3;
+            indices[i*3+1] = f_.f2 ;
+            indices[i*3+2] = f_.f3 ;
         }
 
+        for (int i = 0; i<meshPtr_->getFaces().size()*3; i++)
+        {
+            std::cout<<indices[i]<<", ";
+        }
+        std::cout<<std::endl;
         glGenBuffers(1, &IBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
@@ -253,12 +275,14 @@ private:
 
 private:
     Spectator* camera_ ;
+    GLuint mVAO_;
     GLuint VBO;
     GLuint IBO;
     GLfloat s;
     GLuint gWorldLocation;
     Model* meshPtr_;
     Texture* texturePtr;
+    GameShader* shader_;
 
 
 

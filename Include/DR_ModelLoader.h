@@ -22,6 +22,7 @@ public:
 
     void Draw();
     vector<Vector3f>& getVertices();
+    vector<Vector2f>& getTexVertices();
     vector<FACE>& getFaces();
 
 private:
